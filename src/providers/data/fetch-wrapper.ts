@@ -5,7 +5,7 @@ type Error = {
     statusCode: string
 }
 
-
+// similar to middleware
 const customFetch = async (url: string, options: RequestInit) => {
     const accessToken = localStorage.getItem("access_token");
 
@@ -23,6 +23,7 @@ const customFetch = async (url: string, options: RequestInit) => {
 }
 
 
+// handling errors
 const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undefined> ) : Error | null => {
     if(!body) {
         return {
@@ -41,4 +42,19 @@ const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undef
         }
     } 
     return null
+}
+
+
+export const fetchWrapper = async (url:string, options:RequestInit) => {
+    const response = await customFetch(url, options);
+    // Cloning the response for better visualization
+    const responseClone = response.clone()
+    const body = await responseClone.json()
+
+    const error = getGraphQLErrors(body);
+
+    if(error){
+        throw error
+    }
+    return response
 }
