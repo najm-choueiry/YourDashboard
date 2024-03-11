@@ -47,7 +47,6 @@ const getGraphQLErrors = (body: Record<"errors", GraphQLFormattedError[] | undef
 
 export const fetchWrapper = async (url:string, options:RequestInit) => {
     const response = await customFetch(url, options);
-    // Cloning the response for better visualization
     const responseClone = response.clone()
     const body = await responseClone.json()
 
