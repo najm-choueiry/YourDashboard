@@ -66,6 +66,36 @@ export const authProvider: AuthBindings = {
         }
 
         return {error};
-    }
+    },
+
+    check: async () => {
+        try {
+            // check the identity of the user if authenticated or not
+            await dataProvider.custom ({
+                url: API_URL,
+                method: "post",
+                headers: {},
+                meta: {
+                    rawQuery: `
+                        query Me {
+                            me {
+                                name
+                            }
+                        }
+                    `
+                }
+            });
+
+            return {
+                authenticated: true, 
+                redirectTo: "/"
+            }
+        } catch (error) {
+            return {
+                authenticated: false, 
+                redirectTo: "login"
+            }
+        }
+    },
 
 }
