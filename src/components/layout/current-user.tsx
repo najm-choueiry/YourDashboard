@@ -1,4 +1,4 @@
-import { Popover } from "antd"
+import { Button, Popover } from "antd"
 
 const CurrentUser = () => {
   return (
@@ -9,7 +9,7 @@ const CurrentUser = () => {
             overlayInnerStyle={{padding: 0}}
             overlayStyle={{zIndex : 999}}
         >
-            TEST
+            Test
         </Popover>
     </>
   )

@@ -55,6 +55,7 @@ function App() {
                         </Layout>
                     </Authenticated>} >
                         <Route index element={<Home/>}/>
+
                     </Route>
                 </Routes>
                 <RefineKbar />
