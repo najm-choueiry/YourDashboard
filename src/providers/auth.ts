@@ -8,6 +8,7 @@ export const authCredentials = {
 }
 
 export const authProvider: AuthBindings = {
+
     login: async({email}) => {
         try {
             const {data} = await dataProvider.custom({
@@ -98,4 +99,36 @@ export const authProvider: AuthBindings = {
         }
     },
 
+    getIdentity: async () => {
+
+        const accessToken = localStorage.getItem("access_token")
+    
+        try {
+            const {data} = await dataProvider.custom<{me: any}> ({
+                url: API_URL,
+                method: "post",
+                headers: accessToken ? {
+                    Authorization: `Bearer ${accessToken}`
+                } : {},
+                meta: {
+                    rawQuery: `
+                    query Me {
+                        me {
+                            id
+                            name
+                            email
+                            phone
+                            jobTitle
+                            timezone
+                            avatarUrl
+                        }
+                    }`
+                }
+            });
+
+            return data.me
+        } catch (error) {
+            return undefined
+        }
+    },
 }
