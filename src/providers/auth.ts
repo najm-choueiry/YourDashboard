@@ -55,6 +55,17 @@ export const authProvider: AuthBindings = {
             success: true,
             redirectTo: "/login"
         }
+    },
+
+    onError: async (error) => {
+        if (error.statusCode === "UNAUTHENTICATED") {
+            return {
+                logout: true, 
+                ...error,
+            }
+        }
+
+        return {error};
     }
 
 }
