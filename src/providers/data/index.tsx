@@ -17,6 +17,8 @@ export const client = new GraphQLClient(API_URL, {
     }
 })
 
+
+// https://refine.dev/docs/data/packages/graphql/#realtime
 export const wsClient = typeof window !== "undefined"
     ? createClient({
         url: WS_URL,
