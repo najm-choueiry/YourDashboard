@@ -1,8 +1,13 @@
 import { Button, Popover } from "antd"
 import CustomAvatar from "../custom-avatar"
+import { useGetIdentity } from "@refinedev/core"
+
+import type {User} from '@/graphql/schema.types'
 
 const CurrentUser = () => {
-  return (
+  
+  const {data: user} = useGetIdentity<User>()
+    return (
     <>
         <Popover
             placement="bottomRight"

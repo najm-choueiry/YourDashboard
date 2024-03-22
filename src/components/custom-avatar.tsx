@@ -16,7 +16,7 @@ const CustomAvatar = ({name , style , ...rest}: Props ) => {
           border: "none"
         }}
       >
-        
+        {name}
       </AntdAvatar>
     )
 }
