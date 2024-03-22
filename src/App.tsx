@@ -14,6 +14,7 @@ import { App as AntdApp } from "antd";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import {Home, ForgotPassword, Login, Register} from './pages';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               >
                 <Routes>
                   <Route index element={<WelcomePage />} />
+                  <Route index element={<Home/>}/>
                 </Routes>
                 <RefineKbar />
                 <UnsavedChangesNotifier />
